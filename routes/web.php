@@ -11,6 +11,37 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+// welocom.bladeへの戻し
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
+// // TODOの個別詳細Page表示
+// Route::get('tasks/{id}', 'TasksController@show');
+
+// // TODOの新規登録を処理（新規登録画面を表示するためのものではない）
+// Route::post('tasks', 'TasksController@store');
+
+// // TODOの更新処理（編集画面を表示するためのものではない）
+// Route::put('tasks/{id}', 'TasksController@update');
+
+// // TODOを削除
+// Route::delete('tasks/{id}', 'TasksController@destroy');
+
+// // index: showの補助Page
+// Route::get('tasks', 'TasksController@index');
+
+// // create: 新規作成用のFormPage
+// Route::get('tasks/create', 'TasksController@create');
+
+// // edit: 更新用のFormPAge
+// Route::get('tasks/{id}/edit', 'TasksController@edit')->name('messages.edit');
+
+// URL　/　のみで　index
+Route::get('/', 'TasksController@index');
+
+// Restful RESTful Resource Controller
+Route::resource('tasks', 'TasksController');
+
