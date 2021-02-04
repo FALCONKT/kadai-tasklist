@@ -11,9 +11,15 @@
             <td>{{ $task->id }}</td>
         </tr>
         <tr>
-            <th>メッセージ</th>
+            <th>TODO=やること</th>
             <td>{{ $task->content }}</td>
         </tr>
+     
+        <tr>
+            <th>Status=状態</th>
+            <td>{{ $task->status }}</td>
+        </tr>
+        
     </table>
     
     <!--編集Pageへ    -->
