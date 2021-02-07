@@ -13,10 +13,9 @@
 
 
 // welocom.bladeへの戻し
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
+Route::get('/', function () {
+    return view('welcome');
+});
 
 // // TODOの個別詳細Page表示
 // Route::get('tasks/{id}', 'TasksController@show');
@@ -40,8 +39,8 @@
 // Route::get('tasks/{id}/edit', 'TasksController@edit')->name('messages.edit');
 
 // URL　/　のみで　index
-Route::get('/', 'TasksController@index');
+// Route::get('/', 'TasksController@index');
 
 // Restful RESTful Resource Controller
-Route::resource('tasks', 'TasksController');
+// Route::resource('tasks', 'TasksController');
 
