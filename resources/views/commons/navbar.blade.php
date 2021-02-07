@@ -10,10 +10,15 @@
         <div class="collapse navbar-collapse" id="nav-bar">
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
-                <!--User登録　Link-->
-                <li class="nav-item"><a href="#" class="nav-link">Signup</a></li>
+                <!--User登録　Link　-->
+                <li class="nav-item">
+                    {!! link_to_route('signup.get', 'Signup', [], ['class' => 'nav-link']) !!}
+                </li>
+                
                 <!--LogIn　へのLink-->
-                <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Login</a>
+                </li>
             </ul>
         </div>
         
