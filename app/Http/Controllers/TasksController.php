@@ -14,20 +14,27 @@ class TasksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // getでtasks/にAccessされた場合の「一覧表示処理」
+     
+    //  やること一覧表示
     public function index()
     {
-        $tasks = Task::all();
+        $data = [];
+        if (\Auth::check()) {
+            $user = \Auth::user();
+            $tasks = $user->tasks()->orderBy('created_at', 'desc')->paginate(10);
+            
+            $data = [
+                'user' => $user,
+                'tasks' => $tasks,
+            ];
+        }
         
-        return view('tasks.index', [
-            'tasks' => $tasks,
-        ]);
+        return view('welcome', $data);
     }
 
 
 
-
-
+// ================================
     /**
      * Show the form for creating a new resource.
      *
@@ -56,20 +63,19 @@ class TasksController extends Controller
     {
         // Validation
         $this->validate($request, [
-            'content'=> 'required|max:191',
-            'status' => 'required|max:10',
+            'content' => 'required|max:191',
         ]);
-        
-        $task = new Task;
-        $task->content = $request->content;
-        $task->status = $request->status;    // 追加
-        $task->save();
 
-        return redirect('/');
+        $request->user()->tasks()->create([
+            'content' => $request->content,
+        ]);
+
+        // 投稿完了後に直前のPageが表示
+        return back();
     }
 
 
-
+// ================================
     /**
      * Display the specified resource.
      *
@@ -143,10 +149,13 @@ class TasksController extends Controller
      // deleteでtasks/idにAccessされた場合の「削除処理」
     public function destroy($id)
     {
-        $task = Task::find($id);
-        $task->delete();
+        $task = \App\Task::find($id);
 
-        return redirect('/');
+        if (\Auth::id() === $task->user_id) {
+            $task->delete();
+        }
+
+        return back();
     }
 
     
