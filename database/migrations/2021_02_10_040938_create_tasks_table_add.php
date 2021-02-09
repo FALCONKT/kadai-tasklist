@@ -1,12 +1,10 @@
 <?php
 
-namespace migrations;
-
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTasksTable2 extends Migration
+class CreateTasksTableAdd extends Migration
 {
     
     /**
@@ -21,9 +19,9 @@ class CreateTasksTable2 extends Migration
             // 負の数を許さない
             $table->integer('user_id')->unsigned()->index();
 
-
              // 外部Key制約
             $table->foreign('user_id')->references('id')->on('users');
+
         });
     }
 
