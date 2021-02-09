@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Task;    // 名前空間いちいち呼び出さなくてもよくするためここに記載
+use App\TaskApp\Task;    // 名前空間いちいち呼び出さなくてもよくするためここに記載
 
 class TasksController extends Controller
 {
