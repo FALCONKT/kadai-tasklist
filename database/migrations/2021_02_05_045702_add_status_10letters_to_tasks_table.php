@@ -25,8 +25,12 @@ class AddStatus10lettersToTasksTable extends Migration
      */
     public function down()
     {
+        
+        // Column削除出来るようにする
         Schema::table('tasks', function (Blueprint $table) {
-            //
+           $table->dropColumn('status');
+
         });
+
     }
 }
