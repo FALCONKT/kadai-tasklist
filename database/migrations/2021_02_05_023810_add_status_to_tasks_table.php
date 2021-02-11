@@ -16,7 +16,7 @@ class AddStatusToTasksTable extends Migration
         // Column追加
         Schema::table('tasks', function (Blueprint $table) {
             $table->string('status');
-            // 文字列の長さを10にする。
+
         });     
     }
 
