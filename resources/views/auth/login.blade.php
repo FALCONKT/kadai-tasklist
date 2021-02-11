@@ -25,8 +25,4 @@
             <p class="mt-2">New user? {!! link_to_route('signup.get', 'Sign up now!') !!}</p>
         </div>
     </div>
-<<<<<<< HEAD
 @endsection
-=======
-@endsection
->>>>>>> a6e2b80bda47cf33e70388719ed9b3b572589853

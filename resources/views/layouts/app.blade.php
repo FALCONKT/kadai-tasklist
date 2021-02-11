@@ -2,11 +2,7 @@
 <html lang="ja">
     <head>
         <meta charset="utf-8">
-<<<<<<< HEAD
         <title>To Do Borad ~やること一覧~</title>
-=======
-        <title>TODOBoard</title>
->>>>>>> a6e2b80bda47cf33e70388719ed9b3b572589853
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
     </head>

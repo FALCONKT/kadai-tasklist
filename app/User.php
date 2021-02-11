@@ -1,6 +1,6 @@
 <?php
 
-namespace App\TaskApp;
+namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -26,12 +26,4 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-    
-    //そのUserが持つMicropostsを簡単な記述で取得出来る。
-    public function tasks()
-    {
-        return $this->hasMany(Task::class);
-    }
-
-    
 }

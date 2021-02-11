@@ -17,36 +17,16 @@
 //     return view('welcome');
 // });
 
-<<<<<<< HEAD
-=======
-Route::get('/', 'TasksController@index');
-
-
->>>>>>> a6e2b80bda47cf33e70388719ed9b3b572589853
 // User登録
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
 Route::post('signup', 'Auth\RegisterController@register')->name('signup.post');
 
-<<<<<<< HEAD
 
 // Login認証
-=======
-// LogIn認証
->>>>>>> a6e2b80bda47cf33e70388719ed9b3b572589853
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login')->name('login.post');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
-<<<<<<< HEAD
-=======
-// User機能
-Route::group(['middleware' => ['auth']], function () {
-    Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
-    Route::resource('tasks', 'TasksController', ['only' => ['store', 'destroy']]);
-
-});
-
->>>>>>> a6e2b80bda47cf33e70388719ed9b3b572589853
 
 // // TODOの個別詳細Page表示
 // Route::get('tasks/{id}', 'TasksController@show');
@@ -71,13 +51,10 @@ Route::group(['middleware' => ['auth']], function () {
 
 // URL　/　のみで　index
 // Route::get('/', 'TasksController@index');
-<<<<<<< HEAD
 
 Route::get('/', 'TasksController@index');
-=======
->>>>>>> a6e2b80bda47cf33e70388719ed9b3b572589853
 
 
 // Restful RESTful Resource Controller
-// Route::resource('tasks', 'TasksController');
+Route::resource('tasks', 'TasksController');
 

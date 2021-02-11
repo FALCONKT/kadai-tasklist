@@ -10,8 +10,7 @@
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
-        "laravelcollective/html": "5.5.*",
-        "thomaswelton/laravel-gravatar": "~1.0"
+        "laravelcollective/html": "5.5.*"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
@@ -23,8 +22,7 @@
     "autoload": {
         "classmap": [
             "database/seeds",
-            "database/factories",
-            "app/TaskApp"
+            "database/factories"
         ],
         "psr-4": {
             "App\\": "app/"
