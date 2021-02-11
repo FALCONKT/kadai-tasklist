@@ -3,7 +3,7 @@
 @section('content')
 
     <!-- ここにページ毎のコンテンツを書く -->
-    <h1>id = {{ $task->id }} のTODO詳細Page</h1>
+    <h1>id = {{ $task->id }} のTo Do 詳細Page</h1>
 
     <table class="table table-bordered">
         <tr>
@@ -11,7 +11,7 @@
             <td>{{ $task->id }}</td>
         </tr>
         <tr>
-            <th>TODO=やること</th>
+            <th>To Do=やること</th>
             <td>{{ $task->content }}</td>
         </tr>
      

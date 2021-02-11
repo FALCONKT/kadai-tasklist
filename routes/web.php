@@ -12,14 +12,20 @@
 */
 
 
-// welocom.bladeへの戻し
-Route::get('/', function () {
-    return view('welcome');
-});
+// welocom.bladeへ　直行  初回　Router →
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-
+// User登録
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
 Route::post('signup', 'Auth\RegisterController@register')->name('signup.post');
+
+
+// Login認証
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login')->name('login.post');
+Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
 
 // // TODOの個別詳細Page表示
@@ -45,6 +51,9 @@ Route::post('signup', 'Auth\RegisterController@register')->name('signup.post');
 
 // URL　/　のみで　index
 // Route::get('/', 'TasksController@index');
+
+Route::get('/', 'TasksController@index');
+
 
 // Restful RESTful Resource Controller
 Route::resource('tasks', 'TasksController');

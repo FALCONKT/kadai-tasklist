@@ -14,7 +14,7 @@ class TasksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // getでtasks/にAccessされた場合の「一覧表示処理」
+    // getでtasks/にAccessされた場合の「一覧　表示　処理」
     public function index()
     {
         $tasks = Task::all();
@@ -22,6 +22,7 @@ class TasksController extends Controller
         return view('tasks.index', [
             'tasks' => $tasks,
         ]);
+        // 初回LogInしていないため一覧は見えない
     }
 
 
@@ -33,7 +34,7 @@ class TasksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     // getでtasks/createにAccessされた場合の「新規登録画面表示処理」
+     // getでtasks/createにAccessされた場合の「新規登録画面　表示　処理」
     public function create()
     {
         $task = new Task;
@@ -51,13 +52,14 @@ class TasksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-     // postでtasks/にAccessされた場合の「新規登録処理」
+     // postでtasks/にAccessされた場合の「新規登　だけの　処理」
     public function store(Request $request)
     {
         // Validation
         $this->validate($request, [
             'content'=> 'required|max:191',
-            'status' => 'required|max:10',
+            // 'status' => 'required|max:10',
+            // 解除
         ]);
         
         $task = new Task;
@@ -66,6 +68,8 @@ class TasksController extends Controller
         $task->save();
 
         return redirect('/');
+        // return view('tasks.index',['task'=> $task,]);
+
     }
 
 
@@ -76,12 +80,12 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // getでtasks/idにAccessされた場合の「取得表示処理」
+    // getでtasks/idにAccessされた場合の「取得　表示　処理」
     public function show($id)
     {
         $task = Task::find($id);
 
-        return view('tasks.show', [
+        return view('tasks.show',[
             'task' => $task,
         ]);
     }
@@ -94,7 +98,7 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // getでtasks/id/editにAccessされた場合の「更新画面表示処理」
+    // getでtasks/id/editにAccessされた場合の「更新画面　表示　処理」
     public function edit($id)
     {
         $task = Task::find($id);
@@ -113,7 +117,7 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-     // putまたはpatchでtasks/idにアクセスされた場合の「更新処理」
+     // putまたはpatchでtasks/idにアクセスされた場合の「更新　だけの　処理」
     public function update(Request $request, $id)
     {
         
@@ -130,6 +134,8 @@ class TasksController extends Controller
         $task->save();
 
         return redirect('/');
+        
+
     }
 
 
@@ -140,15 +146,16 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-     // deleteでtasks/idにAccessされた場合の「削除処理」
+     // deleteでtasks/idにAccessされた場合の「削除　だけの　処理」
     public function destroy($id)
     {
         $task = Task::find($id);
         $task->delete();
 
         return redirect('/');
+
+
     }
 
-    
-    
+
 }
