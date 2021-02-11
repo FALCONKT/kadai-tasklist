@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Task;    // 名前空間いちいち呼び出さなくてもよくするためここに記載
+use App\TaskApp\Task;    // 名前空間いちいち呼び出さなくてもよくするためここに記載
 
 class TasksController extends Controller
 {
@@ -14,21 +14,38 @@ class TasksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
     // getでtasks/にAccessされた場合の「一覧　表示　処理」
+=======
+     
+    //  やること一覧表示
+>>>>>>> a6e2b80bda47cf33e70388719ed9b3b572589853
     public function index()
     {
-        $tasks = Task::all();
+        $data = [];
+        if (\Auth::check()) {
+            $user = \Auth::user();
+            $tasks = $user->tasks()->orderBy('created_at', 'desc')->paginate(10);
+            
+            $data = [
+                'user' => $user,
+                'tasks' => $tasks,
+            ];
+        }
         
+<<<<<<< HEAD
         return view('tasks.index', [
             'tasks' => $tasks,
         ]);
         // 初回LogInしていないため一覧は見えない
+=======
+        return view('welcome', $data);
+>>>>>>> a6e2b80bda47cf33e70388719ed9b3b572589853
     }
 
 
 
-
-
+// ================================
     /**
      * Show the form for creating a new resource.
      *
@@ -57,23 +74,32 @@ class TasksController extends Controller
     {
         // Validation
         $this->validate($request, [
+<<<<<<< HEAD
             'content'=> 'required|max:191',
             // 'status' => 'required|max:10',
             // 解除
+=======
+            'content' => 'required|max:191',
+>>>>>>> a6e2b80bda47cf33e70388719ed9b3b572589853
         ]);
-        
-        $task = new Task;
-        $task->content = $request->content;
-        $task->status = $request->status;    // 追加
-        $task->save();
 
+<<<<<<< HEAD
         return redirect('/');
         // return view('tasks.index',['task'=> $task,]);
 
     }
+=======
+        $request->user()->tasks()->create([
+            'content' => $request->content,
+        ]);
+>>>>>>> a6e2b80bda47cf33e70388719ed9b3b572589853
+
+        // 投稿完了後に直前のPageが表示
+        return back();
+    }
 
 
-
+// ================================
     /**
      * Display the specified resource.
      *
@@ -149,12 +175,19 @@ class TasksController extends Controller
      // deleteでtasks/idにAccessされた場合の「削除　だけの　処理」
     public function destroy($id)
     {
-        $task = Task::find($id);
-        $task->delete();
+        $task = \App\TaskApp\Task::find($id);
 
+<<<<<<< HEAD
         return redirect('/');
 
 
+=======
+        if (\Auth::id() === $task->user_id) {
+            $task->delete();
+        }
+
+        return back();
+>>>>>>> a6e2b80bda47cf33e70388719ed9b3b572589853
     }
 
 
