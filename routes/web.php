@@ -11,22 +11,24 @@
 |
 */
 
-
-// welocom.bladeへ　直行  初回　Router →
+// welocom.bladeへ　直行  初回　Router → 無効へ
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+//Controller ( TasksController@index ) を経由して welcome を表示するように
+Route::get('/', 'TasksController@index');
 
 // User登録
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
 Route::post('signup', 'Auth\RegisterController@register')->name('signup.post');
 
+//User 選別
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('users', 'UsersController', ['only' => ['show']]);
+    // Route::resource('tasks', 'TasksController', ['only' => ['index','create','store','edit','uodate','destroy']]);
+    Route::resource('tasks', 'TasksController', ['only' => ['index','create','store','edit','update','destroy']]);
 
-// User選別
-Route::group(['middleware' => ['auth']], function () {
-    
-    Route::resource('users', 'UsersController', 
-    ['only' => ['tasks.index', 'tasks.show','tasks.edit','tasks.create','tasks.tasks']]);
 });
 
 
@@ -57,10 +59,9 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 // // edit: 更新用のFormPAge
 // Route::get('tasks/{id}/edit', 'TasksController@edit')->name('messages.edit');
 
-// URL　/　のみで　index
-// Route::get('/', 'TasksController@index');
 
-Route::get('/', 'TasksController@index');
+Route::get('index', 'TasksController@index');
+
 
 
 // Restful RESTful Resource Controller

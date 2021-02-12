@@ -19,9 +19,16 @@ class RedirectIfAuthenticated
     {
         if (Auth::guard($guard)->check()) {
             return redirect('/');
-            // Loginしている状態で表示させたくないPage（LogInformのPage等）に
-            // Acessされた際のRedirect先」の設定変更
+        //     // Loginしている状態で表示させたくないPage（LogInformのPage等）に
+        //     // Acessされた際のRedirect先」の設定変更
         }
+        // if ($request->ajax() || $request->wantsJson()) {
+        //     return response('Unauthorized.', 401);
+        // } else {
+        //       // /loginにリダイレクト
+        //     return redirect()->guest('/');
+        // }
+        
 
         return $next($request);
     }

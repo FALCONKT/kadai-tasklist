@@ -1,26 +1,36 @@
-<!--@extends('layouts.app')-->
+@extends('layouts.app')
 
-<!--@section('content')-->
+@section('content')
 
-<!--    @if (Auth::check())-->
+    @if (Auth::check())
     <!--Loginしている場合-->
-<!--           <p> {{ Auth::user()->name }}さん、やることが入力出来ます！</p>-->
+           <p> {{ Auth::user()->name }}さん、やることが入力出来ます！</p>
+                            {!! link_to_route('tasks.create', 'To Do を新規登録', [], ['class' => 'nav-link']) !!}
 
-<!--    @else-->
+    <!--tasksを取ってきている-->
+    <div class="col-sm-8">
+        @if (count($tasks) > 0)
+            @include('tasks.tasks', ['tasks' => $tasks])
+        @endif
+    </div>
+
+    @else
     
     <!--/Loginしていない場合-->
 
-<!--    <div class="center jumbotron">-->
-<!--        <div class="text-center">-->
+    <div class="center jumbotron">
+        <div class="text-center">
         
-<!--            <h1>To Do Borad ~やること一覧~</h1>-->
-<!--            {!! link_to_route('signup.get', 'Sign up now!', [], ['class' => 'btn btn-lg btn-primary']) !!}-->
+            <h1>To Do Borad ~やること一覧~</h1>
+            {!! link_to_route('signup.get', 'Sign up now!', [], ['class' => 'btn btn-lg btn-primary']) !!}
         
-<!--        </div>-->
-<!--    </div>-->
+        </div>
+    </div>
     
-<!--    @endif-->
+    
+    
+    @endif
 
-<!--@endsection-->
+@endsection
 
 <!--tasks.indexへ移行-->

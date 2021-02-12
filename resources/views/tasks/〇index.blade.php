@@ -6,10 +6,12 @@
 
    <p>やることが一覧化出来、次々と入力していけます！</p>
     
-   @if (Auth::check())
+    @if ( Auth::check())
+    <!--Loginしている場合-->
+
+
    <h1>To Do 一覧</h1>
 
-    <!--Loginしている場合-->
            <p> {{ Auth::user()->name }}さん、ButonClickで　やることが入力出来ます！</p>
                 
             <!--新規投稿Button-->
@@ -21,7 +23,7 @@
             ['class' => 'btn btn-primary'])
             !!}
     <p></p>
-  <p></p>
+    <p></p>
             @if (count($tasks) > 0)
                 <table class="table table-striped">
                     <thead>
@@ -43,8 +45,7 @@
                 </table>
              @endif    
     
-   @else         
-        
+    @else
     <!--/Loginしていない場合-->
 
     <div class="center jumbotron">

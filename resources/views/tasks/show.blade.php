@@ -26,21 +26,22 @@
     {!!
     link_to_route(
     'tasks.edit',
-    'このTODOを編集',
+    'このTo Do を編集',
     ['id' => $task->id],
     ['class' => 'btn btn-light'])
     !!}
 
     <!--削除Button-->
+    @if (Auth::id() == $task->user_id)
     {!!
     Form::model(
-    $task, 
-    ['route' => ['tasks.destroy', $task->id],
+    $task, ['route' => ['tasks.destroy', $task->id],
     'method' => 'delete'])
     !!}
     
     {!! Form::submit('削除', ['class' => 'btn btn-danger']) !!}
     
     {!! Form::close() !!}
-        
+    @endif 
+
 @endsection

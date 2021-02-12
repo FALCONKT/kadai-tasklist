@@ -20,7 +20,11 @@
                  
                     <!--新規投稿　は　LogIn後でないと　投稿出来ないようにするため　ここに移動　→　表示へ-->
                     <li class="nav-item">
-                        {!! link_to_route('tasks.create', '新規TODOの投稿', [], ['class' => 'nav-link']) !!}
+                        {!! link_to_route('tasks.create', 'To Do新規登録!!', [], ['class' => 'nav-link']) !!}
+                    </li>
+                    
+                    <li class="nav-item">
+                        {!! link_to_route('tasks.index', 'To Do 一覧', [], ['class' => 'nav-link']) !!}
                     </li>
 
                     <li class="nav-item">
