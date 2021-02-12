@@ -22,6 +22,14 @@ Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('sign
 Route::post('signup', 'Auth\RegisterController@register')->name('signup.post');
 
 
+// User選別
+Route::group(['middleware' => ['auth']], function () {
+    
+    Route::resource('users', 'UsersController', 
+    ['only' => ['tasks.index', 'tasks.show','tasks.edit','tasks.create','tasks.tasks']]);
+});
+
+
 // Login認証
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login')->name('login.post');

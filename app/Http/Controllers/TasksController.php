@@ -28,7 +28,6 @@ class TasksController extends Controller
 
 
 
-
     /**
      * Show the form for creating a new resource.
      *
@@ -124,7 +123,8 @@ class TasksController extends Controller
         // Validation
         $this->validate($request, [
             'content'=> 'required|max:191',
-            'status' => 'required|max:10',
+            // 'status' => 'required|max:10',
+            // 解除
         ]);
 
         
