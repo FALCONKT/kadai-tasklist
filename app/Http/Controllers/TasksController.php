@@ -53,9 +53,15 @@ class TasksController extends Controller
     {
         $task = new Task;
 
+        if (\Auth::check()) {
+
         return view('tasks.create', [
             'task' => $task,
         ]);
+        
+        }
+        return redirect('/');
+
     }
 
 
@@ -84,11 +90,14 @@ class TasksController extends Controller
         // return redirect('/');
         // return view('tasks.index',['task'=> $task,]);
         
+        if (\Auth::check()) {
         
         $request->user()->tasks()->create([
             'content' => $request->content,
             'status' => $request->status,
         ]);
+            
+        }
 
         // return back();
         // 投稿完了後に直前のページが表示
@@ -109,9 +118,14 @@ class TasksController extends Controller
     {
         $task = Task::find($id);
 
+        if (\Auth::check()) {
+            
         return view('tasks.show',[
             'task' => $task,
         ]);
+        
+        }
+        return redirect('/');
 
 
 
@@ -130,9 +144,15 @@ class TasksController extends Controller
     {
         $task = Task::find($id);
 
+        if (\Auth::check()) {
+            
         return view('tasks.edit', [
             'task' => $task,
         ]);
+        
+        }
+        return redirect('/');
+
     }
 
 
@@ -157,9 +177,14 @@ class TasksController extends Controller
 
         
         $task = Task::find($id);
+        
+        if (\Auth::check()) {
+            
         $task->content = $request->content;
         $task->status = $request->status;    // 追加
         $task->save();
+        
+        }
 
         return redirect('/');
         
