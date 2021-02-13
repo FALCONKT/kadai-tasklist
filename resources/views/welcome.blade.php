@@ -5,7 +5,7 @@
     @if (Auth::check())
     <!--Loginしている場合-->
            <p> {{ Auth::user()->name }}さん、やることが入力出来ます！</p>
-                            {!! link_to_route('tasks.create', 'To Do を新規登録', [], ['class' => 'nav-link']) !!}
+            <p> {!! link_to_route('tasks.create', 'To Do を新規登録', [], ['class' => 'nav-link']) !!}</p>
 
     <!--tasksを取ってきている-->
     <div class="col-sm-8">

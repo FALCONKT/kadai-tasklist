@@ -60,7 +60,7 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 // Route::get('tasks/{id}/edit', 'TasksController@edit')->name('messages.edit');
 
 
-Route::get('index', 'TasksController@index');
+// Route::get('index', 'TasksController@index');
 
 
 
