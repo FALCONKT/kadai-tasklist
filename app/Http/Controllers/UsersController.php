@@ -14,7 +14,7 @@ class UsersController extends Controller
         $user = User::find($id);
         $tasks = $user->tasks()->orderBy('created_at', 'desc')->paginate(10);
 
-        if (\Auth::check()) {
+        if (\Auth::check() && \Auth::id()) {
 
         $data = [
             'user' => $user,
