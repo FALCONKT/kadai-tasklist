@@ -4,7 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Task;    // 名前空間いちいち呼び出さなくてもよくするためここに記載
+use App\Task;    // 名前空空間をここに記載
+
+
+// ！！！！！！！！！！！！！！！！
+// LogInしているかどうか判定する　Classを用いる
+use Illuminate\Support\Facades\Auth;
+
+// ！！！！！！！！！！！！！！！！
 
 class TasksController extends Controller
 {
@@ -61,15 +68,11 @@ class TasksController extends Controller
     {
         $task = new Task;
 
-
         return view('tasks.create', [
             'task' => $task,
         ]);
-        
-
 
     }
-
 
 
     /**
@@ -101,8 +104,6 @@ class TasksController extends Controller
             'content' => $request->content,
             'status' => $request->status,
         ]);
-            
-
 
         // return back();
         // 投稿完了後に直前のページが表示
@@ -123,16 +124,13 @@ class TasksController extends Controller
     {
         $task = Task::find($id);
 
-        if (Auth::user() === $id) {
-            
+        if (\Auth::id() === $task->user_id) {
+
         return view('tasks.show',[
             'task' => $task,
         ]);
-        
         }
         return redirect('/');
-
-
 
     }
 
@@ -149,13 +147,13 @@ class TasksController extends Controller
     {
         $task = Task::find($id);
 
-        if (Auth::user() === $id) {
-            
+        if (\Auth::id() === $task->user_id) {
+
         return view('tasks.edit', [
             'task' => $task,
         ]);
-        
         }
+        
         return redirect('/');
 
     }
@@ -182,18 +180,15 @@ class TasksController extends Controller
 
         
         $task = Task::find($id);
-        
-        if (Auth::user() === $id) {
-            
-        $task->content = $request->content;
-        $task->status = $request->status;    // 追加
-        $task->save();
-        
-        }
+   
+        if (\Auth::id() === $task->user_id) {
+            $task->content = $request->content;
+            $task->status = $request->status;    // 追加
+            $task->save();
+        }   
 
         return redirect('/');
         
-
     }
 
 
