@@ -19,15 +19,21 @@
 //Controller ( TasksController@index ) を経由して welcome を表示するように
 Route::get('/', 'TasksController@index');
 
+
 // User登録
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
 Route::post('signup', 'Auth\RegisterController@register')->name('signup.post');
 
+
 //User 選別
 Route::group(['middleware' => 'auth'], function () {
+    
     Route::resource('users', 'UsersController', ['only' => ['show']]);
+    // ここでは件数のみ取ってきているだけ
+    
     // Route::resource('tasks', 'TasksController', ['only' => ['index','create','store','edit','uodate','destroy']]);
-    Route::resource('tasks', 'TasksController', ['only' => ['show','edit','create','destroy']]);
+    Route::resource('tasks', 'TasksController', ['only' => ['index','show','create','store','edit','update','destroy']]);
+    // LogInしている場合にのみ出来ることを限定しているだけ　ここでは大半出来る
 
 });
 

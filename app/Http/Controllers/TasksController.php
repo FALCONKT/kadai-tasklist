@@ -68,6 +68,7 @@ class TasksController extends Controller
     {
         $task = new Task;
 
+        // 作成は何にしても新しいので　特に条件していない
         return view('tasks.create', [
             'task' => $task,
         ]);
@@ -83,6 +84,8 @@ class TasksController extends Controller
      */
      // postでtasks/にAccessされた場合の「新規登　だけの　処理」
     public function store(Request $request)
+    // 変数名$requestは送られてきた要求値
+    
     {
         // Validation
         $this->validate($request, [
@@ -124,9 +127,14 @@ class TasksController extends Controller
     {
         $task = Task::find($id);
 
+
+        // LogInしている(Accessされた)　変数　が　誰の　変数か確認　して　〇ならPage遷移　✖TOP　Redirect
+        // ここではLogInsしているUserのid　が　自分のtask(やること) Tableのid の場合
+       if (\Auth::id() === $task->user_id) {
         return view('tasks.show',[
             'task' => $task,
         ]);
+       }
 
         return redirect('/');
 
@@ -145,10 +153,17 @@ class TasksController extends Controller
     {
         $task = Task::find($id);
 
+        // LogInしている(Accessされた)　変数　が　誰の　変数か確認　して　〇ならPage遷移　✖TOP　Redirect
+        // ここではLogInsしているUserのid　が　自分のtask(やること) Tableのid の場合
+       if (\Auth::id() === $task->user_id) {
+
         return view('tasks.edit', [
             'task' => $task,
         ]);
+       }
+       return redirect('/');
 
+       
     }
 
 
@@ -173,10 +188,13 @@ class TasksController extends Controller
 
         $task = Task::find($id);
    
+        // LogInしている(Accessされた)　変数　が　誰の　変数か確認　して　〇ならPage遷移　✖TOP　Redirect
+        // ここではLogInsしているUserのid　が　自分のtask(やること) Tableのid の場合
+       if (\Auth::id() === $task->user_id) {
             $task->content = $request->content;
             $task->status = $request->status;    // 追加
             $task->save();
-   
+       }
         return redirect('/');
         
     }
