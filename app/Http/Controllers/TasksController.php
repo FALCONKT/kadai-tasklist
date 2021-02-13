@@ -53,7 +53,7 @@ class TasksController extends Controller
     {
         $task = new Task;
 
-        if (\Auth::check()) {
+        if (\Auth::check() && \Auth::id()) {
 
         return view('tasks.create', [
             'task' => $task,
@@ -90,7 +90,7 @@ class TasksController extends Controller
         // return redirect('/');
         // return view('tasks.index',['task'=> $task,]);
         
-        if (\Auth::check()) {
+        if (\Auth::check() && \Auth::id()) {
         
         $request->user()->tasks()->create([
             'content' => $request->content,
@@ -118,7 +118,7 @@ class TasksController extends Controller
     {
         $task = Task::find($id);
 
-        if (\Auth::check()) {
+        if (\Auth::check() && \Auth::id()) {
             
         return view('tasks.show',[
             'task' => $task,
@@ -144,7 +144,7 @@ class TasksController extends Controller
     {
         $task = Task::find($id);
 
-        if (\Auth::check()) {
+        if (\Auth::check() && \Auth::id()) {
             
         return view('tasks.edit', [
             'task' => $task,
@@ -178,7 +178,7 @@ class TasksController extends Controller
         
         $task = Task::find($id);
         
-        if (\Auth::check()) {
+        if (\Auth::check() && \Auth::id()) {
             
         $task->content = $request->content;
         $task->status = $request->status;    // 追加
