@@ -40,8 +40,16 @@ class TasksController extends Controller
         
     }
 
+    // TaskListでは　User一覧は見せるが、詳細へはAccess出来ないようにする。
 
+    // 参考    
+    // // ログイン中のユーザー情報
+    // // Auth::user();
+    
+    // // ログイン中のユーザーID
+    // Auth::id();   
 
+//  Auth::user() === Auth::id()
 
     /**
      * Show the form for creating a new resource.
@@ -53,7 +61,7 @@ class TasksController extends Controller
     {
         $task = new Task;
 
-        if (\Auth::check() && \Auth::id()) {
+        if (Auth::user() === Auth::id()) {
 
         return view('tasks.create', [
             'task' => $task,
@@ -90,7 +98,7 @@ class TasksController extends Controller
         // return redirect('/');
         // return view('tasks.index',['task'=> $task,]);
         
-        if (\Auth::check() && \Auth::id()) {
+        if (Auth::user() === Auth::id()) {
         
         $request->user()->tasks()->create([
             'content' => $request->content,
@@ -118,7 +126,7 @@ class TasksController extends Controller
     {
         $task = Task::find($id);
 
-        if (\Auth::check() && \Auth::id()) {
+        if (Auth::user() === Auth::id()) {
             
         return view('tasks.show',[
             'task' => $task,
@@ -144,7 +152,7 @@ class TasksController extends Controller
     {
         $task = Task::find($id);
 
-        if (\Auth::check() && \Auth::id()) {
+        if (Auth::user() === Auth::id()) {
             
         return view('tasks.edit', [
             'task' => $task,
@@ -178,7 +186,7 @@ class TasksController extends Controller
         
         $task = Task::find($id);
         
-        if (\Auth::check() && \Auth::id()) {
+        if (Auth::user() === Auth::id()) {
             
         $task->content = $request->content;
         $task->status = $request->status;    // 追加
